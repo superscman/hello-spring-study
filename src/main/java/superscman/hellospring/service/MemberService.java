@@ -1,11 +1,13 @@
 package superscman.hellospring.service;
 
+import org.springframework.stereotype.Service;
 import superscman.hellospring.Repository.MemberRepository;
 import superscman.hellospring.Repository.MemoryMemberRepository;
 import superscman.hellospring.domain.Member;
 
 import java.util.List;
 import java.util.Optional;
+
 
 public class MemberService {
 

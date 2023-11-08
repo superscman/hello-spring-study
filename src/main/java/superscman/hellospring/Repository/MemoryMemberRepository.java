@@ -1,12 +1,15 @@
 package superscman.hellospring.Repository;
 
+import org.springframework.stereotype.Repository;
 import superscman.hellospring.domain.Member;
 
 import java.util.*;
 
+
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
+
     private static long sequence = 0L;
 
     @Override
