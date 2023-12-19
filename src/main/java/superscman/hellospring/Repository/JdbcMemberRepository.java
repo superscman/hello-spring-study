@@ -75,7 +75,6 @@ public class JdbcMemberRepository implements MemberRepository {
                 throw new SQLException("id 조회 실패");
             }
 
-            return member;
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }finally {
