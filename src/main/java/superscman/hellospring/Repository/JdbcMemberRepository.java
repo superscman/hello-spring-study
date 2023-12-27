@@ -27,7 +27,7 @@ public class JdbcMemberRepository implements MemberRepository {
         ResultSet rs = null;
 
         try {
-            conn = dataSource.getConnection();
+            conn = getConnection();
             pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             pstmt.setString(1, member.getName());
@@ -59,12 +59,11 @@ public class JdbcMemberRepository implements MemberRepository {
         ResultSet rs = null;
 
         try {
-            conn = dataSource.getConnection();
-            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
             pstmt.setLong(1, id);
 
-            pstmt.executeQuery(); // 실제 쿼리가 이 때 날아감
+            rs = pstmt.executeQuery(); // 실제 쿼리가 이 때 날아감
 
             if(rs.next()) {
                 Member member = new Member();
@@ -72,7 +71,7 @@ public class JdbcMemberRepository implements MemberRepository {
                 member.setName(rs.getString("name"));
                 return Optional.of(member);
             }else {
-                throw new SQLException("id 조회 실패");
+                return Optional.empty();
             }
 
         } catch (Exception e) {
@@ -84,13 +83,62 @@ public class JdbcMemberRepository implements MemberRepository {
 
     @Override
     public Optional<Member> findByName(String name) {
-        return Optional.empty();
+        String sql = "select * from member where name = ?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, name);
+
+            rs = pstmt.executeQuery(); // 실제 쿼리가 이 때 날아감
+
+            if(rs.next()) {
+                Member member = new Member();
+                member.setId(rs.getLong("id"));
+                member.setName(rs.getString("name"));
+                return Optional.of(member);
+            }
+
+            return Optional.empty();
+
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }finally {
+            close(conn, pstmt, rs);
+        }
     }
 
     @Override
     public List<Member> findAll() {
+        String sql = "select * from member";
 
-        return null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+
+            rs = pstmt.executeQuery(); // 실제 쿼리가 이 때 날아감
+
+            List<Member> members = new ArrayList<>();
+            while(rs.next()) {
+                Member member = new Member();
+                member.setId(rs.getLong("id"));
+                member.setName(rs.getString("name"));
+                members.add(member);
+            }
+            return members;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }finally {
+            close(conn, pstmt, rs);
+        }
     }
 
     private Connection getConnection() {
