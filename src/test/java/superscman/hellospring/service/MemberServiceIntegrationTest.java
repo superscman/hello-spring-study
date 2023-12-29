@@ -28,7 +28,7 @@ class MemberServiceIntegrationTest {
         Member member = new Member();
         member.setName("hello");
         //when
-        long saveId = memberService.join(member);
+        long saveId = memberService.join(member); //h2가 연결이 잘안된건지..테이블을 못찾냐
         //then
         Member findMember = memberService.findOne(saveId).get();
         assertThat(member.getName()).isEqualTo(findMember.getName());
