@@ -23,7 +23,7 @@ class MemberServiceIntegrationTest {
     MemberRepository memberRepository;
 
     @Test
-    void 회원가입() {//어렵
+    void 회원가입() {//오늘은 일이 바빠서 못봐버렸우
         //given
         Member member = new Member();
         member.setName("hello");
