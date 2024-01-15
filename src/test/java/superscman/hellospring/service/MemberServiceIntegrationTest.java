@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-@Transactional
+@Transactional //테스트케이스에 붙으면 테스트를 하고 롤백을 시킨다.
 class MemberServiceIntegrationTest {
 
     @Autowired
@@ -23,12 +23,12 @@ class MemberServiceIntegrationTest {
     MemberRepository memberRepository;
 
     @Test
-    void 회원가입() {//오늘은 일이 바빠서 못봐버렸우
+    void 회원가입() {
         //given
         Member member = new Member();
         member.setName("hello");
         //when
-        long saveId = memberService.join(member); //h2가 연결이 잘안된건지..테이블을 못찾냐
+        long saveId = memberService.join(member);
         //then
         Member findMember = memberService.findOne(saveId).get();
         assertThat(member.getName()).isEqualTo(findMember.getName());
