@@ -1,6 +1,7 @@
 package superscman.hellospring.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import superscman.hellospring.Repository.MemberRepository;
 import superscman.hellospring.Repository.MemoryMemberRepository;
 import superscman.hellospring.domain.Member;
@@ -8,7 +9,7 @@ import superscman.hellospring.domain.Member;
 import java.util.List;
 import java.util.Optional;
 
-
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
