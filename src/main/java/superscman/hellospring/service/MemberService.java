@@ -19,7 +19,7 @@ public class MemberService {
     }
 
     // 회원가입
-    public long join(Member member) {
+    public long join(Member member) { // 운영 말고 개발하고 싶다
         //같은 이름 있는 중복 회원 X
         long start = System.currentTimeMillis();
 
