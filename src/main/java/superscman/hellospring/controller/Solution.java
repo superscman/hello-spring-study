@@ -1,13 +1,15 @@
 package superscman.hellospring.controller;
 
 
-class Solution {
+import java.util.Arrays;
+
+class Solution { //아무래도 다음 강의는 새로운 프로젝트를 만들어서 할 것 같다. 이제 다시 정신차려서 공부하자. 성공 이직 화이팅!!
     public static void main(String[]args) {
         String[] park = {"XXX", "XSX", "XXX"};
         String[] routes = {"S 1"};
         int [] answer = solution(park, routes);
 
-        System.out.println(answer);
+        System.out.println(Arrays.toString(answer));
     }
     public static int[] solution(String[] park, String[] routes) {
 
