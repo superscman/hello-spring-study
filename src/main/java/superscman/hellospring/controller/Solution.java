@@ -4,6 +4,7 @@ package superscman.hellospring.controller;
 import java.util.Arrays;
 
 class Solution { //아무래도 다음 강의는 새로운 프로젝트를 만들어서 할 것 같다. 이제 다시 정신차려서 공부하자. 성공 이직 화이팅!!
+    // 아니 확실히 처음 강의들었을 때와 실무 조금 해보고 들었을때의 이해도가 완전 다르다.. 역시... 늦게들어도 나쁘지않아...
     public static void main(String[]args) {
         String[] park = {"XXX", "XSX", "XXX"};
         String[] routes = {"S 1"};
